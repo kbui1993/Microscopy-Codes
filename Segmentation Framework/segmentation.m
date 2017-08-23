@@ -19,10 +19,10 @@ fprintf('Performing Cartoon+Texture Decomposition.\n');
 fprintf('Cartoon+Texture Decomposition Completed.\n\n');
 
 %specify parameters for local multiphase segmentation
-lambda = 10;
-beta = 10; 
-nu = 255^2*10^(-3);
-dt = 3.20;
+lambda = 10; %weighing parameter for the fidelity term
+beta = 10; %weighing parameter for the intensity difference term
+nu = 255^2*10^(-3); %weighing parameter for the regularization term
+dt = 3.20; %time step
 
 %perform local multiphase segmentation
 fprintf('Performing Cartoon Segmentation.\n');
@@ -50,9 +50,9 @@ params.curvsigmaFilter = 0;
 params.curvmethod = 'scalespace';
 
 %specify parameters for texture clustering
-tau = 0.92;
-k = 5;
-dt = 0.03;
+tau = 0.92; %thresholding parameter (percentile)
+k = 5; %number of clusters
+dt = 0.03; %time step
 
 %Run empirical wavelet transform (curvelet)
 fprintf('Performing Texture Segmentation.\n');
