@@ -8,7 +8,7 @@
 load('images.mat');
 
 %specify the image here
-image = 2;
+image = 1;
 
 %obtain the image
 im_name = strcat('image', num2str(image));

@@ -20,6 +20,9 @@
 %--------------------------------------------------------------------------
 function [u]=multiphase(f, lambda, nu, tau)
 
+%padding parameter
+pad=2*lambda;
+
 % obtains image size
 [M,N] = size(f);
 
@@ -39,9 +42,19 @@ for i=1:M
         u2(i,j) = sin((pi*i)/10)*sin((pi*j)/10);
     end
 end
+
+%threhold
 u1 = double(u1>0);
 u2 = double(u2>0);
 
+%padding
+f=padarray(f, [pad, pad], 'replicate');
+u1=padarray(u1, [pad, pad], 'replicate');
+u2=padarray(u2, [pad, pad], 'replicate');
+Lfilter1 = padarray(Lfilter1, [pad, pad], 'replicate');
+Lfilter2 = padarray(Lfilter2, [pad, pad], 'replicate');
+
+%create a matrix of small values
 [m,n]= size(u1);
 error = 10^(-5)*eye(m,n);
 
@@ -64,13 +77,13 @@ for i=1:200
     
     %computing u2
     u2old = u2;
-    u2=u1+tau*(-lambda*(c1-f).^2.*u1-lambda*(c2-f).^2.*(1-u1)+lambda*(c3-f).^2.*u1+lambda*(c4-f).^2.*(1-u1));
+    u2=u2+tau*(-lambda*(c1-f).^2.*u1+lambda*(c2-f).^2.*u1-lambda*(c3-f).^2.*(1-u1)+lambda*(c4-f).^2.*(1-u1));
     u2=real(ifft2(ifftshift(fftshift(fft2(u2))./Lfilter2)));
 
     %Thresholding u2
     u2 = 1.* (u2 > 0.50);
     
-    %Print out the number of iterations required to finish processing
+    %stopping criterion
     if all(u1old(:) == u1(:)) && all(u2old(:) == u2(:))
         fprintf('Number of iterations completed: %d \n \n', i);
         break;
@@ -78,14 +91,16 @@ for i=1:200
    
 end
 
-
+%print if the algorithm does not converge
 if i == 200
     fprintf('Number of iterations completed: %d \n \n', i);
 end
 
-
-u1=0.6666*u1;
-u2=0.3333*u2;
+%unpadding
+u1 = u1(1+pad:end-pad,1+pad:end-pad);
+u2 = u2(1+pad:end-pad,1+pad:end-pad);
 
 %combining u1 and u2 to obtain final segmentation result
+u1=0.6666*u1;
+u2=0.3333*u2;
 u=u1+u2;

@@ -9,7 +9,7 @@
 load('images.mat');
 
 %specify image number here
-image = 8;
+image = 1;
 
 %set up parameters for EWTC
 params.option=3; 
