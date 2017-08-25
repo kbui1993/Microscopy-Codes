@@ -7,14 +7,14 @@
 % f - original image
 % lambda - weighing parameter for the fidelity term
 % beta - weighing parameter for the intensity difference term
-% nu - weighing parameter for the regularization term
-% tau - time step
+% mu - weighing parameter for the regularization term
+% dt - time step
 %Output:
 % u - segmentation result
 %-------------------------------------------------------------------------
 
 
-function [u]=localmultiphase(f, lambda, beta, nu, tau)
+function [u]=localmultiphase(f, lambda, beta, mu, dt)
 
 % padding parameter
 pad=2*lambda;
@@ -25,8 +25,8 @@ pad=2*lambda;
 [XX,YY] = meshgrid((1:N)/N, (1:M)/M);
 freqs_1 = XX - 0.5 - 1/N/2;
 freqs_2 = YY - 0.5 - 1/M/2;
-Lfilter1 = 1 + nu*tau*(freqs_1.^2 + freqs_2.^2);
-Lfilter2 = 1 + nu*tau*(freqs_1.^2 + freqs_2.^2);
+Lfilter1 = 1 + mu*dt*(freqs_1.^2 + freqs_2.^2);
+Lfilter2 = 1 + mu*dt*(freqs_1.^2 + freqs_2.^2);
 
 %creates pre-initialization functions for segmentation (checkerboard functions)
 u1 = zeros(M,N);
@@ -77,8 +77,8 @@ for i=1:200
     
     %computing u1
     u1old = u1;
-    u1=u1+tau*(-lambda*(c1-f).^2.*u2-lambda*(c2-f).^2.*(1-u2)+lambda*(c3-f).^2.*u2+lambda*(c4-f).^2.*(1-u2));
-    u1=u1+tau*(beta*(-(diff1-d1).^2.*u2-(diff1-d2).^2.*(1-u2)+(diff1-d3).^2.*u2+(diff1-d4).^2.*(1-u2)));
+    u1=u1+dt*(-lambda*(c1-f).^2.*u2-lambda*(c2-f).^2.*(1-u2)+lambda*(c3-f).^2.*u2+lambda*(c4-f).^2.*(1-u2));
+    u1=u1+dt*(beta*(-(diff1-d1).^2.*u2-(diff1-d2).^2.*(1-u2)+(diff1-d3).^2.*u2+(diff1-d4).^2.*(1-u2)));
     u1=real(ifft2(ifftshift(fftshift(fft2(u1))./Lfilter1)));
     
     %Thresholding u1
@@ -86,8 +86,8 @@ for i=1:200
     
     %computing u2
     u2old = u2;
-    u2=u2+tau*(-lambda*(c1-f).^2.*u1+lambda*(c2-f).^2.*u1-lambda*(c3-f).^2.*(1-u1)+lambda*(c4-f).^2.*(1-u1));
-    u2=u2+tau*(beta*(-(diff1-d1).^2.*u1 + (diff1-d2).^2.*u1 - (diff1-d3).^2.*(1-u1)+(diff1-d4).^2.*(1-u1)));
+    u2=u2+dt*(-lambda*(c1-f).^2.*u1+lambda*(c2-f).^2.*u1-lambda*(c3-f).^2.*(1-u1)+lambda*(c4-f).^2.*(1-u1));
+    u2=u2+dt*(beta*(-(diff1-d1).^2.*u1 + (diff1-d2).^2.*u1 - (diff1-d3).^2.*(1-u1)+(diff1-d4).^2.*(1-u1)));
     u2=real(ifft2(ifftshift(fftshift(fft2(u2))./Lfilter2)));
 
     %Thresholding u2
