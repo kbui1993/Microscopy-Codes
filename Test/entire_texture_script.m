@@ -27,7 +27,7 @@ params.curvmethod = 'scalespace';
 
 %format the figure
 iptsetpref('ImshowBorder','tight');
-for file = 1:8
+for file = 1:16
     %print message
     fprintf('Performing texture segmentation on image %d.\n', file);
     
@@ -48,11 +48,15 @@ for file = 1:8
     
     %perform clustering
     [s,k] = texture_cluster(result, pam(2), pam(3));
+
+    %perform texture segmentation by gabor filter
+    [X, g] = gabor_cluster(v, pam(2));
     
     %output the images
     figure; 
-    subplot(1,3,1); imagesc(v); axis off; axis square; colormap gray; title('texture');
-    subplot(1,3,2); imagesc(reshape(k,256,256)); axis off; axis square; colormap gray; title('k-means');
-    subplot(1,3,3); imagesc(reshape(s,256,256)); axis off; axis square; colormap gray; title('MBO');
+    subplot(2,2,1); imagesc(v); axis off; axis square; colormap gray; title('texture');
+    subplot(2,2,2); imagesc(reshape(g, 256, 256)); axis off; axis square; colormap gray; title("Gabor Filter");
+    subplot(2,2,3); imagesc(reshape(k,256,256)); axis off; axis square; colormap gray; title('k-means');
+    subplot(2,2,4); imagesc(reshape(s,256,256)); axis off; axis square; colormap gray; title('MBO');
     
 end

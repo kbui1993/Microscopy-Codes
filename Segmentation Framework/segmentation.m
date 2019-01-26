@@ -21,7 +21,7 @@ fprintf('Cartoon+Texture Decomposition Completed.\n\n');
 %specify parameters for local multiphase segmentation
 lambda = 10; %weighing parameter for fidelity term
 beta = 10; %weighing parameter for intensity difference term
-mu = 255^2*10^(-3); %weighing parameter for regularization term
+mu = 256^2*10^(-3); %weighing parameter for regularization term
 dt = 3.20; %time step
 
 %perform local multiphase segmentation

@@ -101,6 +101,6 @@ u1 = u1(1+pad:end-pad,1+pad:end-pad);
 u2 = u2(1+pad:end-pad,1+pad:end-pad);
 
 %combining u1 and u2 to obtain final segmentation result
-u1=0.6666*u1;
-u2=0.3333*u2;
+u1=2*u1;
+u2=1*u2;
 u=u1+u2;

@@ -5,6 +5,8 @@ in the paper
 -K. Bui, et al. "Segmentation of Scanning Tunnel Microscopy Images Using Variational
 Methods and Empirical Wavelets", 2017
 
+https://arxiv.org/abs/1804.08890
+
 This toolbox is freely distributed and can be used without any charges for
 research purposes, but please cite our papers when publishing your works.
 The code should not be used for commercial purposes. 
@@ -44,7 +46,7 @@ Microscopy Codes
 The Test folders contain scripts to reproduce the segmentation results of 
 the images in our paper. The entire_cartoon_script.m and the
 entire_texture_script.m produce the cartoon and texture segmentation results,
-respectively, for all eight images in the Image folder. There is a single
+respectively, for all sixteen images in the Image folder. There is a single
 version if the user wants to run the segmentation algorithm onto one image.
 The single version could be modified if the user wants to run it on his or
 her own image. On the other hand, we have segmentation.m in Segmentation
