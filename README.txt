@@ -5,7 +5,31 @@ in the paper
 -K. Bui, et al. "Segmentation of Scanning Tunnel Microscopy Images Using Variational
 Methods and Empirical Wavelets", 2017
 
-https://arxiv.org/abs/1804.08890
+https://link.springer.com/epdf/10.1007/s10044-019-00824-0?author_access_token=X7Qeci9q7wd9AR1fM7tYVve4RwlQNchNByi7wbcMAY69s1zBW2Cf_hewHCFXRC4WmygDLaBwjCkbEXfx2AytC3MLWJNCQE_xG7y7D_F6iOz67sKtBgJvP2QNQf7VWGEXEOn5iADNmrdD-WIO4UaYGg%3D%3D
+
+To cite this paper,
+
+@Article{Bui2019,
+author="Bui, Kevin
+and Fauman, Jacob
+and Kes, David
+and Torres Mandiola, Leticia
+and Ciomaga, Adina
+and Salazar, Ricardo
+and Bertozzi, Andrea L.
+and Gilles, J{\'e}r{\^o}me
+and Goronzy, Dominic P.
+and Guttentag, Andrew I.
+and Weiss, Paul S.",
+title="Segmentation of scanning tunneling microscopy images using variational methods and empirical wavelets",
+journal="Pattern Analysis and Applications",
+year="2019",
+month="May",
+day="05",
+issn="1433-755X",
+doi="10.1007/s10044-019-00824-0",
+url="https://doi.org/10.1007/s10044-019-00824-0"
+}
 
 This toolbox is freely distributed and can be used without any charges for
 research purposes, but please cite our papers when publishing your works.
