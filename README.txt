@@ -3,7 +3,7 @@ scanning tunnel microsocpy images. The methods and algorithms are described
 in the paper
 
 -K. Bui, et al. "Segmentation of Scanning Tunnel Microscopy Images Using Variational
-Methods and Empirical Wavelets", 2017
+Methods and Empirical Wavelets", 2019
 
 https://link.springer.com/epdf/10.1007/s10044-019-00824-0?author_access_token=X7Qeci9q7wd9AR1fM7tYVve4RwlQNchNByi7wbcMAY69s1zBW2Cf_hewHCFXRC4WmygDLaBwjCkbEXfx2AytC3MLWJNCQE_xG7y7D_F6iOz67sKtBgJvP2QNQf7VWGEXEOn5iADNmrdD-WIO4UaYGg%3D%3D
 
