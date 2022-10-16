@@ -89,22 +89,27 @@ end
 function x = projsplx(y)
 
 
-m = size(y,2); bget = false;
+m = size(y,2); 
 n = size(y,1);
 s = sort(y, 2, 'descend'); tmpsum = zeros(n,1);
 
+ind = zeros(n,1);
+new_ind = zeros(n,1);
+tmax = zeros(n,1);
 for ii = 1:m-1
-    tmpsum = tmpsum + s(:,ii);
-    tmax = (tmpsum - 1)/ii;
-    if tmax >= s(:,ii+1)
-        bget = true;
-        break;
-    end
-end
-    
-if ~bget, tmax = (tmpsum + s(:,m) -1)/m; end;
+    tmpsum = tmpsum + s(:,ii).*(1-ind);
+    tmax = tmax.*ind+(1-ind).*(tmpsum - 1)/ii;
 
-x = max(bsxfun(@minus, y, tmax), 0);
+    new_ind = new_ind + (tmax>=s(:,ii+1));
+    ind = new_ind>0;
+    
+end
+
+tmax2 = (tmpsum + s(:,m) -1)/m;
+
+tmax3 = ind.*tmax + tmax2.*(1-ind);
+
+x = max(bsxfun(@minus, y, tmax3), 0);
 
 return;
 end
