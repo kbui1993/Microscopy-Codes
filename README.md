@@ -37,7 +37,7 @@ The code should not be used for commercial purposes.
 
 For any questions, please contact kbui1993@gmail.com.
 
-==========================Outside Toolboxes===============================
+# Outside Toolboxes
 In the development of this toolbox, we require the following toolboxes developed by people 
 outside the research group:
 
@@ -48,9 +48,8 @@ For the convenience of the user, the outside toolboxes are included in the
 Utilities subfolder in the Texture Segmentation folder. We do not claim that 
 we contribute to any programming of the outside toolboxes.
 
-===========================================================================
 
-===========================Organization====================================
+# Organization
 
 This toolbox is organized as follows:
 
@@ -64,9 +63,9 @@ Microscopy Codes
  |-Texture Segmentation: functions for texture segmentation
      |-Utilities: contains outside toolboxes
 
-===========================================================================
      
-=============================Utilization===================================
+# Utilization
+
 The Test folders contain scripts to reproduce the segmentation results of 
 the images in our paper. The entire_cartoon_script.m and the
 entire_texture_script.m produce the cartoon and texture segmentation results,
